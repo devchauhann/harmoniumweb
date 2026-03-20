@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,25 +89,55 @@
 
   <style>
     :root {
-      --bg:        #111113;
-      --bg2:       #18181b;
-      --border:    #2a2a30;
-      --border2:   #38383f;
-      --text:      #ededf0;
-      --text2:     #a0a0ab;
-      --text3:     #606068;
-      --text4:     #404048;
-      --accent:    #e0784a;
+      --bg: #111113;
+      --bg2: #18181b;
+      --border: #2a2a30;
+      --border2: #38383f;
+      --text: #ededf0;
+      --text2: #a0a0ab;
+      --text3: #606068;
+      --text4: #404048;
+      --accent: #e0784a;
       --accent-bg: #261a13;
-      --shadow-md: 0 4px 16px rgba(0,0,0,.4);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, .4);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 99px;
+    }
 
     /* ── MOBILE HARD BLOCK ── */
     /* Hidden on desktop, shown on mobile via JS */
@@ -123,76 +154,305 @@
       text-align: center;
       gap: 0;
     }
+
     .mb-icon {
-      width: 64px; height: 64px;
+      width: 64px;
+      height: 64px;
       background: var(--accent-bg);
       border: 1px solid var(--border2);
       border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--accent);
       margin-bottom: 28px;
     }
+
     .mb-title {
       font-family: 'Lora', serif;
-      font-size: 1.5rem; font-weight: 500;
-      letter-spacing: -0.02em; color: var(--text);
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
       margin-bottom: 12px;
     }
+
     .mb-body {
-      font-size: 0.875rem; color: var(--text2);
-      line-height: 1.7; max-width: 300px;
+      font-size: 0.875rem;
+      color: var(--text2);
+      line-height: 1.7;
+      max-width: 300px;
       margin-bottom: 32px;
     }
+
     .mb-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 18px;
-      font-family: 'DM Mono', monospace; font-size: 0.68rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--text3);
     }
-    .mb-badge i { color: var(--accent); }
+
+    .mb-badge i {
+      color: var(--accent);
+    }
 
     /* ── HEADER ── */
-    header { background: var(--bg); position: sticky; top: 0; z-index: 100; }
-    .header-inner { display: flex; align-items: center; gap: 16px; padding: 0 40px; height: 60px; }
-    .logo { display: flex; align-items: baseline; gap: 2px; text-decoration: none; flex-shrink: 0; }
-    .logo-word { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; color: var(--text); letter-spacing: -0.01em; }
-    .logo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); display: inline-block; margin: 0 1px 1px 2px; flex-shrink: 0; }
-    .hdr-spacer { flex: 1; }
-    .hdr-links { display: flex; align-items: center; gap: 6px; }
-    .hdr-link { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 7px; color: var(--text4); text-decoration: none; transition: color .15s, background .15s; font-size: 0.88rem; }
-    .hdr-link:hover { color: var(--text2); background: var(--bg2); }
-    .hdr-star { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: var(--bg2); border: 1px solid var(--border2); border-radius: 8px; padding: 0 14px; height: 34px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; color: var(--text); transition: border-color .15s, background .15s; white-space: nowrap; }
-    .hdr-star:hover { background: #222226; border-color: var(--text4); }
-    .hdr-star .star-gh-icon { color: var(--text2); flex-shrink: 0; }
-    .hdr-star .star-sep { width: 1px; height: 16px; background: var(--border2); margin: 0 2px; }
-    .hdr-star .star-icon { color: #f0c040; flex-shrink: 0; }
-    .hdr-star .star-count { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text2); min-width: 8px; }
-    .hdr-divider { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+    header {
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 40px;
+      height: 60px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-word {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin: 0 1px 1px 2px;
+      flex-shrink: 0;
+    }
+
+    .hdr-spacer {
+      flex: 1;
+    }
+
+    .hdr-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hdr-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      color: var(--text4);
+      text-decoration: none;
+      transition: color .15s, background .15s;
+      font-size: 0.88rem;
+    }
+
+    .hdr-link:hover {
+      color: var(--text2);
+      background: var(--bg2);
+    }
+
+    .hdr-star {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 0 14px;
+      height: 34px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color .15s, background .15s;
+      white-space: nowrap;
+    }
+
+    .hdr-star:hover {
+      background: #222226;
+      border-color: var(--text4);
+    }
+
+    .hdr-star .star-gh-icon {
+      color: var(--text2);
+      flex-shrink: 0;
+    }
+
+    .hdr-star .star-sep {
+      width: 1px;
+      height: 16px;
+      background: var(--border2);
+      margin: 0 2px;
+    }
+
+    .hdr-star .star-icon {
+      color: #f0c040;
+      flex-shrink: 0;
+    }
+
+    .hdr-star .star-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text2);
+      min-width: 8px;
+    }
+
+    .hdr-divider {
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+      margin: 0 4px;
+    }
 
     /* ── MAIN ── */
-    main { padding: 60px 40px 80px; flex: 1; }
+    main {
+      padding: 60px 40px 80px;
+      flex: 1;
+    }
 
     /* ── EYEBROW ── */
-    .eyebrow { display: flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
-    .eyebrow-line { width: 20px; height: 1px; background: var(--text4); }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-line {
+      width: 20px;
+      height: 1px;
+      background: var(--text4);
+    }
 
     /* ── HERO ── */
-    .hero { margin-bottom: 64px; animation: fadeUp .5s both; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease; max-height: 600px; opacity: 1; }
-    .hero.hidden { max-height: 0; opacity: 0; margin-bottom: 0; pointer-events: none; }
-    .hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text); margin-bottom: 20px; }
-    .hero h1 em { color: var(--accent); font-style: italic; }
-    .hero-body { font-size: 0.9rem; color: var(--text2); line-height: 1.75; max-width: 560px; margin-bottom: 32px; }
-    .hero-links { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .hero {
+      margin-bottom: 64px;
+      animation: fadeUp .5s both;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+      max-height: 600px;
+      opacity: 1;
+    }
 
-    .link-primary { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff; border: none; padding: 9px 22px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; border-radius: 7px; cursor: pointer; text-decoration: none; transition: all .18s; }
-    .link-primary:hover { background: #d06838; transform: translateY(-1px); box-shadow: var(--shadow-md); }
-    .link-primary:active { transform: translateY(0); }
-    .link-primary.done { background: var(--bg2); color: var(--text3); border: 1px solid var(--border); box-shadow: none !important; transform: none !important; pointer-events: none; }
+    .hero.hidden {
+      max-height: 0;
+      opacity: 0;
+      margin-bottom: 0;
+      pointer-events: none;
+    }
 
-    .link-ghost { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text3); text-decoration: none; transition: color .15s; display: inline-flex; align-items: center; gap: 6px; }
-    .link-ghost:hover { color: var(--text); }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-body {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .link-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 9px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 7px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .18s;
+    }
+
+    .link-primary:hover {
+      background: #d06838;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .link-primary:active {
+      transform: translateY(0);
+    }
+
+    .link-primary.done {
+      background: var(--bg2);
+      color: var(--text3);
+      border: 1px solid var(--border);
+      box-shadow: none !important;
+      transform: none !important;
+      pointer-events: none;
+    }
+
+    .link-ghost {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .link-ghost:hover {
+      color: var(--text);
+    }
 
     /* ── KEY PERMISSION NOTICE ── */
     #keyPermission {
@@ -206,108 +466,555 @@
       gap: 14px;
       animation: fadeUp .3s both;
     }
-    #keyPermission i { color: var(--accent); font-size: 0.85rem; flex-shrink: 0; }
-    #keyPermission p { font-size: 0.82rem; color: var(--text2); flex: 1; line-height: 1.65; }
-    #keyPermission p strong { color: var(--text); font-weight: 500; }
-    #keyPermission .perm-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border: none; padding: 8px 18px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background .15s; flex-shrink: 0; }
-    #keyPermission .perm-btn:hover { background: #d06838; }
+
+    #keyPermission i {
+      color: var(--accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    #keyPermission p {
+      font-size: 0.82rem;
+      color: var(--text2);
+      flex: 1;
+      line-height: 1.65;
+    }
+
+    #keyPermission p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    #keyPermission .perm-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+
+    #keyPermission .perm-btn:hover {
+      background: #d06838;
+    }
 
     /* ── APP LAYOUT ── */
-    #mainScreen { display: none; animation: fadeUp .4s both; }
-    .app-layout { display: grid; grid-template-columns: 1fr 252px; gap: 48px; align-items: start; }
+    #mainScreen {
+      display: none;
+      animation: fadeUp .4s both;
+    }
+
+    .app-layout {
+      display: grid;
+      grid-template-columns: 1fr 252px;
+      gap: 48px;
+      align-items: start;
+    }
 
     /* ── SECTION TITLE ── */
-    .section-title { font-family: 'Lora', serif; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 500; letter-spacing: -0.02em; color: var(--text); margin-bottom: 22px; }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
 
     /* ── NOW PLAYING ── */
-    .np-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
-    .np-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text4); flex-shrink: 0; }
-    .np-pill { display: flex; align-items: center; gap: 8px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; transition: border-color .15s, background .15s; }
-    .np-pill.active { border-color: var(--accent); background: var(--accent-bg); }
-    .np-key { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; color: var(--accent); min-width: 18px; display: none; }
-    .np-note { font-size: 0.78rem; color: var(--text2); display: none; }
-    .np-swaram { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text4); margin-left: 2px; display: none; }
-    .np-idle { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text4); }
+    .np-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .np-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text4);
+      flex-shrink: 0;
+    }
+
+    .np-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      transition: border-color .15s, background .15s;
+    }
+
+    .np-pill.active {
+      border-color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    .np-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      min-width: 18px;
+      display: none;
+    }
+
+    .np-note {
+      font-size: 0.78rem;
+      color: var(--text2);
+      display: none;
+    }
+
+    .np-swaram {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text4);
+      margin-left: 2px;
+      display: none;
+    }
+
+    .np-idle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text4);
+    }
 
     /* ── SVG KEYBOARD — full width, scales to container ── */
     .kb-wrap {
       width: 100%;
     }
+
     svg#hKeys {
       width: 100%;
       height: auto;
       display: block;
     }
-    svg#hKeys .wkey { fill: #eae6de; stroke: #b8b2a6; stroke-width: 0.5; cursor: pointer; transition: fill .07s; }
-    svg#hKeys .bkey { fill: #1c1a17; stroke: #0d0c0a; stroke-width: 0.5; cursor: pointer; transition: fill .07s; }
-    svg#hKeys .wkey:hover, svg#hKeys .wkey.pressed { fill: #f2b27a; }
-    svg#hKeys .bkey:hover, svg#hKeys .bkey.pressed { fill: #3e2511; }
+
+    svg#hKeys .wkey {
+      fill: #eae6de;
+      stroke: #b8b2a6;
+      stroke-width: 0.5;
+      cursor: pointer;
+      transition: fill .07s;
+    }
+
+    svg#hKeys .bkey {
+      fill: #1c1a17;
+      stroke: #0d0c0a;
+      stroke-width: 0.5;
+      cursor: pointer;
+      transition: fill .07s;
+    }
+
+    svg#hKeys .wkey:hover,
+    svg#hKeys .wkey.pressed {
+      fill: #f2b27a;
+    }
+
+    svg#hKeys .bkey:hover,
+    svg#hKeys .bkey.pressed {
+      fill: #3e2511;
+    }
 
     /* ── LEGEND ── */
-    .key-legend { display: flex; align-items: center; gap: 18px; margin-top: 14px; flex-wrap: wrap; }
-    .leg-item { display: flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.04em; color: var(--text4); }
-    .ls { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-    .ls.w { background: #eae6de; }
-    .ls.b { background: #1c1a17; border: 1px solid var(--border2); }
-    .ls.p { background: #f2b27a; }
+    .key-legend {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+      color: var(--text4);
+    }
+
+    .ls {
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .ls.w {
+      background: #eae6de;
+    }
+
+    .ls.b {
+      background: #1c1a17;
+      border: 1px solid var(--border2);
+    }
+
+    .ls.p {
+      background: #f2b27a;
+    }
 
     /* ── NOTATION ── */
-    .notation-row { display: flex; align-items: flex-start; gap: 14px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
-    .not-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text4); padding-top: 2px; flex-shrink: 0; }
-    .not-val { font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--accent); letter-spacing: 0.07em; min-height: 20px; flex: 1; word-break: break-all; line-height: 1.6; }
-    .not-hint { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--text4); padding-top: 3px; flex-shrink: 0; white-space: nowrap; }
+    .notation-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .not-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text4);
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .not-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.07em;
+      min-height: 20px;
+      flex: 1;
+      word-break: break-all;
+      line-height: 1.6;
+    }
+
+    .not-hint {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text4);
+      padding-top: 3px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
 
     /* ── SIDEBAR ── */
-    .sidebar { display: flex; flex-direction: column; }
-    .ctrl-block { padding: 18px 0; border-bottom: 1px solid var(--border); }
-    .ctrl-block:first-child { padding-top: 0; }
-    .ctrl-block:last-child { border-bottom: none; padding-bottom: 0; }
-    .ctrl-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
-    .ctrl-lbl i { color: var(--accent); font-size: 0.62rem; }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ctrl-block {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ctrl-block:first-child {
+      padding-top: 0;
+    }
+
+    .ctrl-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ctrl-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .ctrl-lbl i {
+      color: var(--accent);
+      font-size: 0.62rem;
+    }
 
     /* Volume */
-    .vol-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .vol-val { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--accent); }
-    input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; background: var(--border2); border-radius: 99px; outline: none; cursor: pointer; }
-    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 0 6px rgba(224,120,74,.35); transition: transform .15s; }
-    input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-    input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); cursor: pointer; border: none; }
+    .vol-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .vol-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 3px;
+      background: var(--border2);
+      border-radius: 99px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(224, 120, 74, .35);
+      transition: transform .15s;
+    }
+
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: none;
+    }
 
     /* Toggle */
-    .toggle-row { display: flex; align-items: center; justify-content: space-between; }
-    .toggle-txt { font-size: 0.82rem; color: var(--text2); }
-    .switch { position: relative; display: inline-block; width: 38px; height: 20px; }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .tog { position: absolute; cursor: pointer; inset: 0; background: var(--border2); border-radius: 99px; transition: background .3s; border: 1px solid transparent; }
-    .tog::before { content: ''; position: absolute; width: 14px; height: 14px; left: 2px; top: 2px; border-radius: 50%; background: var(--text4); transition: transform .3s, background .3s; }
-    input:checked + .tog { background: var(--accent-bg); border-color: var(--accent); }
-    input:checked + .tog::before { transform: translateX(18px); background: var(--accent); }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-txt {
+      font-size: 0.82rem;
+      color: var(--text2);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 38px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .tog {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: var(--border2);
+      border-radius: 99px;
+      transition: background .3s;
+      border: 1px solid transparent;
+    }
+
+    .tog::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      background: var(--text4);
+      transition: transform .3s, background .3s;
+    }
+
+    input:checked+.tog {
+      background: var(--accent-bg);
+      border-color: var(--accent);
+    }
+
+    input:checked+.tog::before {
+      transform: translateX(18px);
+      background: var(--accent);
+    }
 
     /* Stepper */
-    .stepper { display: flex; align-items: center; gap: 8px; }
-    .step-btn { width: 30px; height: 30px; border-radius: 7px; border: 1px solid var(--border2); background: var(--bg); color: var(--text3); font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .15s, color .15s, background .15s; }
-    .step-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
-    .step-val { flex: 1; text-align: center; font-family: 'DM Mono', monospace; font-size: 0.9rem; color: var(--text); font-weight: 500; }
-    .root-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 18px; background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--accent); letter-spacing: 0.05em; margin-left: 6px; }
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      border: 1px solid var(--border2);
+      background: var(--bg);
+      color: var(--text3);
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+
+    .step-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    .step-val {
+      flex: 1;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .root-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 18px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-left: 6px;
+    }
 
     /* MIDI */
-    .midi-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-    .midi-status { font-size: 0.78rem; color: var(--text3); flex: 1; }
-    .midi-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border2); background: var(--bg); color: var(--text4); font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; }
-    .midi-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
-    select#midiInputDevices { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 7px; color: var(--text2); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; padding: 7px 10px; outline: none; cursor: pointer; }
-    select#midiInputDevices:focus { border-color: var(--accent); }
+    .midi-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .midi-status {
+      font-size: 0.78rem;
+      color: var(--text3);
+      flex: 1;
+    }
+
+    .midi-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border2);
+      background: var(--bg);
+      color: var(--text4);
+      font-size: 0.72rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .15s;
+    }
+
+    .midi-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    select#midiInputDevices {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 7px;
+      color: var(--text2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      padding: 7px 10px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select#midiInputDevices:focus {
+      border-color: var(--accent);
+    }
 
     /* ── LOADING ── */
-    #loadingOverlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(17,17,19,.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
-    #loadingOverlay.show { display: flex; }
-    .spinner { width: 30px; height: 30px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
-    .loading-txt { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase; }
+    #loadingOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(17, 17, 19, .85);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #loadingOverlay.show {
+      display: flex;
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+      border: 2px solid var(--border2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    .loading-txt {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      text-transform: uppercase;
+    }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .hero { animation: fadeUp .5s both; }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero {
+      animation: fadeUp .5s both;
+    }
   </style>
 
   <script>
@@ -318,143 +1025,143 @@
     var sourceNodes = [], sourceNodeState = [];
 
     var keyboardMap = {
-      "s":53,"S":53,"a":54,"A":54,"`":55,"1":56,
-      "q":57,"Q":57,"2":58,"w":59,"W":59,"e":60,"E":60,
-      "4":61,"r":62,"R":62,"5":63,"t":64,"T":64,"y":65,"Y":65,
-      "7":66,"u":67,"U":67,"8":68,"i":69,"I":69,"9":70,
-      "o":71,"O":71,"p":72,"P":72,"-":73,"[":74,"=":75,"]":76,"\\":77,"'":78,";":79
+      "s": 53, "S": 53, "a": 54, "A": 54, "`": 55, "1": 56,
+      "q": 57, "Q": 57, "2": 58, "w": 59, "W": 59, "e": 60, "E": 60,
+      "4": 61, "r": 62, "R": 62, "5": 63, "t": 64, "T": 64, "y": 65, "Y": 65,
+      "7": 66, "u": 67, "U": 67, "8": 68, "i": 69, "I": 69, "9": 70,
+      "o": 71, "O": 71, "p": 72, "P": 72, "-": 73, "[": 74, "=": 75, "]": 76, "\\": 77, "'": 78, ";": 79
     };
     var swaramMap = {
-      "s":"Ṃ","S":"Ṃ","a":"Ṃ","A":"Ṃ","`":"P̣","1":"Ḍ","q":"Ḍ","Q":"Ḍ","2":"Ṇ",
-      "w":"Ṇ","W":"Ṇ","e":"S","E":"S","4":"R","r":"R","R":"R","5":"G","t":"G","T":"G",
-      "y":"M","Y":"M","7":"M","u":"P","U":"P","8":"D","i":"D","I":"D","9":"N",
-      "o":"N","O":"N","p":"Ṡ","P":"Ṡ","-":"Ṙ","[":"Ṙ","=":"Ġ","]":"Ġ","\\":"Ṁ","'":"Ṁ",";":"Ṗ",",":","
+      "s": "Ṃ", "S": "Ṃ", "a": "Ṃ", "A": "Ṃ", "`": "P̣", "1": "Ḍ", "q": "Ḍ", "Q": "Ḍ", "2": "Ṇ",
+      "w": "Ṇ", "W": "Ṇ", "e": "S", "E": "S", "4": "R", "r": "R", "R": "R", "5": "G", "t": "G", "T": "G",
+      "y": "M", "Y": "M", "7": "M", "u": "P", "U": "P", "8": "D", "i": "D", "I": "D", "9": "N",
+      "o": "N", "O": "N", "p": "Ṡ", "P": "Ṡ", "-": "Ṙ", "[": "Ṙ", "=": "Ġ", "]": "Ġ", "\\": "Ṁ", "'": "Ṁ", ";": "Ṗ", ",": ","
     };
-    var noteNamesArr = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+    var noteNamesArr = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     var notation = "", loopStart = 0.5, loop = true;
     var keyMap = [], baseKeyMap = [];
     var middleC = 60, rootKey = 62, currentOctave = 3, stackCount = 0;
-    var octaveMap = [-36,-24,-12,0,12,24,36];
-    var baseKeyNames = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+    var octaveMap = [-36, -24, -12, 0, 12, 24, 36];
+    var baseKeyNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     var pressedKeys = {};
 
     function getCharLength(s) { return [...s].length; }
-    function getMidiName(n) { return noteNamesArr[n%12] + (Math.floor(n/12)-1); }
+    function getMidiName(n) { return noteNamesArr[n % 12] + (Math.floor(n / 12) - 1); }
 
     function init() {
       var tr = parseInt(document.getElementById('transpose').innerText);
-      var startKey = (middleC-124)+(rootKey-middleC);
-      for (var i=0;i<128;i++) { baseKeyMap[i]=startKey++; keyMap[i]=baseKeyMap[i]+tr; }
-      for (var i=0;i<keyMap.length;i++) { sourceNodes[i]=null; setSourceNode(i); }
+      var startKey = (middleC - 124) + (rootKey - middleC);
+      for (var i = 0; i < 128; i++) { baseKeyMap[i] = startKey++; keyMap[i] = baseKeyMap[i] + tr; }
+      for (var i = 0; i < keyMap.length; i++) { sourceNodes[i] = null; setSourceNode(i); }
     }
 
     function setSourceNode(i) {
-      if (sourceNodes[i] && sourceNodeState[i]==1) sourceNodes[i].stop(0);
-      sourceNodeState[i]=0; sourceNodes[i]=null;
-      sourceNodes[i]=context.createBufferSource();
+      if (sourceNodes[i] && sourceNodeState[i] == 1) sourceNodes[i].stop(0);
+      sourceNodeState[i] = 0; sourceNodes[i] = null;
+      sourceNodes[i] = context.createBufferSource();
       sourceNodes[i].connect(gainNode).connect(context.destination);
-      sourceNodes[i].buffer=audioBuffer; sourceNodes[i].loop=loop; sourceNodes[i].loopStart=loopStart;
-      if (keyMap[i]!=0) sourceNodes[i].detune.value=keyMap[i]*100;
+      sourceNodes[i].buffer = audioBuffer; sourceNodes[i].loop = loop; sourceNodes[i].loopStart = loopStart;
+      if (keyMap[i] != 0) sourceNodes[i].detune.value = keyMap[i] * 100;
     }
 
     function noteOff(note) {
-      var i=note+octaveMap[currentOctave];
-      if (i<sourceNodes.length) setSourceNode(i);
-      for (var c=1;c<=stackCount;c++) { i=note+octaveMap[currentOctave+c]; if (i<sourceNodes.length) setSourceNode(i); }
+      var i = note + octaveMap[currentOctave];
+      if (i < sourceNodes.length) setSourceNode(i);
+      for (var c = 1; c <= stackCount; c++) { i = note + octaveMap[currentOctave + c]; if (i < sourceNodes.length) setSourceNode(i); }
     }
     function noteOn(note) {
-      var i=note+octaveMap[currentOctave];
-      if (i<sourceNodes.length && sourceNodeState[i]==0) { sourceNodes[i].start(0); sourceNodeState[i]=1; }
-      for (var c=1;c<=stackCount;c++) { i=note+octaveMap[currentOctave+c]; if (i<sourceNodes.length && sourceNodeState[i]==0) { sourceNodes[i].start(0); sourceNodeState[i]=1; } }
+      var i = note + octaveMap[currentOctave];
+      if (i < sourceNodes.length && sourceNodeState[i] == 0) { sourceNodes[i].start(0); sourceNodeState[i] = 1; }
+      for (var c = 1; c <= stackCount; c++) { i = note + octaveMap[currentOctave + c]; if (i < sourceNodes.length && sourceNodeState[i] == 0) { sourceNodes[i].start(0); sourceNodeState[i] = 1; } }
     }
 
     function updateDisplay(key, on) {
-      var pill=document.getElementById('npPill');
-      var kEl=document.getElementById('npKey'), nEl=document.getElementById('npNote'), sEl=document.getElementById('npSwaram'), idle=document.getElementById('npIdle');
+      var pill = document.getElementById('npPill');
+      var kEl = document.getElementById('npKey'), nEl = document.getElementById('npNote'), sEl = document.getElementById('npSwaram'), idle = document.getElementById('npIdle');
       if (on && key) {
-        var midi=keyboardMap[key];
-        kEl.textContent = key==='`' ? '`' : key.toUpperCase();
+        var midi = keyboardMap[key];
+        kEl.textContent = key === '`' ? '`' : key.toUpperCase();
         nEl.textContent = midi ? getMidiName(midi) : '—';
         sEl.textContent = swaramMap[key] || '';
-        kEl.style.display=nEl.style.display='inline';
-        sEl.style.display=sEl.textContent?'inline':'none';
-        idle.style.display='none'; pill.classList.add('active');
+        kEl.style.display = nEl.style.display = 'inline';
+        sEl.style.display = sEl.textContent ? 'inline' : 'none';
+        idle.style.display = 'none'; pill.classList.add('active');
       } else {
-        kEl.style.display=nEl.style.display=sEl.style.display='none';
-        idle.style.display='inline'; pill.classList.remove('active');
+        kEl.style.display = nEl.style.display = sEl.style.display = 'none';
+        idle.style.display = 'inline'; pill.classList.remove('active');
       }
     }
 
     function highlightKey(key, on) {
-      var safe=key.replace(/\\/g,'\\\\').replace(/"/g,'\\"');
-      var el=document.querySelector('polygon[key="'+safe+'"]');
-      if (el) { if(on) el.classList.add('pressed'); else el.classList.remove('pressed'); }
+      var safe = key.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+      var el = document.querySelector('polygon[key="' + safe + '"]');
+      if (el) { if (on) el.classList.add('pressed'); else el.classList.remove('pressed'); }
     }
 
-    window.onkeydown=function(e) {
-      if (!e.repeat && typeof keyboardMap[e.key]!=='undefined') {
-        noteOn(keyboardMap[e.key]); pressedKeys[e.key]=true; updateDisplay(e.key,true); highlightKey(e.key,true);
+    window.onkeydown = function (e) {
+      if (!e.repeat && typeof keyboardMap[e.key] !== 'undefined') {
+        noteOn(keyboardMap[e.key]); pressedKeys[e.key] = true; updateDisplay(e.key, true); highlightKey(e.key, true);
       }
     };
-    window.onkeyup=function(e) {
-      var k=e.key;
-      if (typeof keyboardMap[k]!=='undefined') {
+    window.onkeyup = function (e) {
+      var k = e.key;
+      if (typeof keyboardMap[k] !== 'undefined') {
         noteOff(keyboardMap[k]); delete pressedKeys[k];
-        var rem=Object.keys(pressedKeys);
-        if (rem.length) updateDisplay(rem[rem.length-1],true); else updateDisplay(null,false);
-        highlightKey(k,false);
+        var rem = Object.keys(pressedKeys);
+        if (rem.length) updateDisplay(rem[rem.length - 1], true); else updateDisplay(null, false);
+        highlightKey(k, false);
       }
-      if (k==='Backspace' && getCharLength(notation)>0) notation=notation.substring(0,getCharLength(notation)-1);
-      else if (k==='Delete') notation='';
-      else if (k==='Enter') notation='';
-      else if (k==='Tab') { notation+=','; e.preventDefault(); }
-      else if (typeof swaramMap[k]!=='undefined') notation+=swaramMap[k];
-      document.getElementById('notVal').textContent=notation;
+      if (k === 'Backspace' && getCharLength(notation) > 0) notation = notation.substring(0, getCharLength(notation) - 1);
+      else if (k === 'Delete') notation = '';
+      else if (k === 'Enter') notation = '';
+      else if (k === 'Tab') { notation += ','; e.preventDefault(); }
+      else if (typeof swaramMap[k] !== 'undefined') notation += swaramMap[k];
+      document.getElementById('notVal').textContent = notation;
     };
 
     function initReverbNode() {
-      reverbNode=context.createConvolver();
-      var r=new XMLHttpRequest(); r.open('GET','reverb.wav',true); r.responseType='arraybuffer';
-      r.onload=function() { context.decodeAudioData(r.response,function(buf){ reverbNode.buffer=buf; reverbNode.connect(context.destination); updateReverbState(useReverb); }); };
+      reverbNode = context.createConvolver();
+      var r = new XMLHttpRequest(); r.open('GET', 'reverb.wav', true); r.responseType = 'arraybuffer';
+      r.onload = function () { context.decodeAudioData(r.response, function (buf) { reverbNode.buffer = buf; reverbNode.connect(context.destination); updateReverbState(useReverb); }); };
       r.send(); // Save loaded state
-          saveAppState();
+      saveAppState();
     }
 
     function load() {
       document.getElementById('loadingOverlay').classList.add('show');
-      context=new AudioContext();
-      gainNode=context.createGain(); gainNode.gain.value=0.3; gainNode.connect(context.destination);
+      context = new AudioContext();
+      gainNode = context.createGain(); gainNode.gain.value = 0.3; gainNode.connect(context.destination);
 
-      if (typeof Storage!=='undefined') {
-        if (localStorage.getItem('webharmonium.volume')) { document.getElementById('myRange').value=localStorage.getItem('webharmonium.volume'); onGainChange(); }
-        if (localStorage.getItem('webharmonium.useReverb')) { useReverb=localStorage.getItem('webharmonium.useReverb')==='true'; document.getElementById('useReverb').checked=useReverb; }
-        if (localStorage.getItem('webharmonium.octave')) { currentOctave=parseInt(localStorage.getItem('webharmonium.octave'))||3; }
-        document.getElementById('octave').innerText=currentOctave;
+      if (typeof Storage !== 'undefined') {
+        if (localStorage.getItem('webharmonium.volume')) { document.getElementById('myRange').value = localStorage.getItem('webharmonium.volume'); onGainChange(); }
+        if (localStorage.getItem('webharmonium.useReverb')) { useReverb = localStorage.getItem('webharmonium.useReverb') === 'true'; document.getElementById('useReverb').checked = useReverb; }
+        if (localStorage.getItem('webharmonium.octave')) { currentOctave = parseInt(localStorage.getItem('webharmonium.octave')) || 3; }
+        document.getElementById('octave').innerText = currentOctave;
         if (localStorage.getItem('webharmonium.transpose')) {
-          document.getElementById('transpose').innerText=localStorage.getItem('webharmonium.transpose');
-          var cs=parseInt(document.getElementById('transpose').innerText);
-          document.getElementById('rootNote').innerText=baseKeyNames[cs>=0?cs%12:cs+12];
+          document.getElementById('transpose').innerText = localStorage.getItem('webharmonium.transpose');
+          var cs = parseInt(document.getElementById('transpose').innerText);
+          document.getElementById('rootNote').innerText = baseKeyNames[cs >= 0 ? cs % 12 : cs + 12];
         }
-        if (localStorage.getItem('webharmonium.stack')) { stackCount=parseInt(localStorage.getItem('webharmonium.stack'))||0; }
-        document.getElementById('stack').innerText=stackCount;
+        if (localStorage.getItem('webharmonium.stack')) { stackCount = parseInt(localStorage.getItem('webharmonium.stack')) || 0; }
+        document.getElementById('stack').innerText = stackCount;
       }
 
       initReverbNode();
-      var req=new XMLHttpRequest(); req.open('GET',sampleURL,true); req.responseType='arraybuffer';
-      req.onload=function() {
-        context.decodeAudioData(req.response,function(buf){
-          audioBuffer=buf;
+      var req = new XMLHttpRequest(); req.open('GET', sampleURL, true); req.responseType = 'arraybuffer';
+      req.onload = function () {
+        context.decodeAudioData(req.response, function (buf) {
+          audioBuffer = buf;
           document.getElementById('loadingOverlay').classList.remove('show');
           init();
           // Show app screen
-          document.getElementById('mainScreen').style.display='block';
+          document.getElementById('mainScreen').style.display = 'block';
           // Hide hero with smooth collapse
           document.getElementById('hero').classList.add('hidden');
           // Update load button
-          var btn=document.getElementById('loadBtn');
-          btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Loaded';
+          var btn = document.getElementById('loadBtn');
+          btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Loaded';
           btn.classList.add('done');
-        }, function(e){ console.error(e); document.getElementById('loadingOverlay').classList.remove('show'); });
+        }, function (e) { console.error(e); document.getElementById('loadingOverlay').classList.remove('show'); });
       };
       req.send();
       requestMIDIAccess();
@@ -462,81 +1169,83 @@
 
     function requestMIDIAccess() {
       try {
-        if (navigator.requestMIDIAccess) { document.getElementById('midiStatus').textContent='Supported'; navigator.requestMIDIAccess().then(onMIDISuccess,onMIDIFailure); }
-        else { document.getElementById('midiStatus').textContent='Not supported'; }
-      } catch(err) { document.getElementById('midiStatus').textContent='Error'; }
+        if (navigator.requestMIDIAccess) { document.getElementById('midiStatus').textContent = 'Supported'; navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure); }
+        else { document.getElementById('midiStatus').textContent = 'Not supported'; }
+      } catch (err) { document.getElementById('midiStatus').textContent = 'Error'; }
     }
-    var midiAccess=null;
+    var midiAccess = null;
     function onMIDISuccess(m) {
-      midiAccess=m;
-      var sel=document.getElementById('midiInputDevices');
-      while(sel.options.length) sel.remove(0);
+      midiAccess = m;
+      var sel = document.getElementById('midiInputDevices');
+      while (sel.options.length) sel.remove(0);
       for (var inp of midiAccess.inputs.values()) {
-        var opt=document.createElement('option'); opt.id=inp.id; opt.text=inp.name+' — '+inp.manufacturer; sel.add(opt); inp.onmidimessage=getMIDIMessage;
+        var opt = document.createElement('option'); opt.id = inp.id; opt.text = inp.name + ' — ' + inp.manufacturer; sel.add(opt); inp.onmidimessage = getMIDIMessage;
       }
-      document.getElementById('midiStatus').textContent=midiAccess.inputs.size?'Connected':'No devices';
+      document.getElementById('midiStatus').textContent = midiAccess.inputs.size ? 'Connected' : 'No devices';
     }
-    function onMIDIFailure() { document.getElementById('midiStatus').textContent='Failed'; }
+    function onMIDIFailure() { document.getElementById('midiStatus').textContent = 'Failed'; }
     function getMIDIMessage(msg) {
-      var cmd=msg.data[0],note=msg.data[1],vel=msg.data.length>2?msg.data[2]:0;
-      var sel=document.getElementById('midiInputDevices');
-      if (sel.options.length && msg.target.id===sel.options[sel.selectedIndex].id) {
-        if (cmd===144) { if(vel>0) noteOn(note); else noteOff(note); }
-        else if (cmd===128) noteOff(note);
-        else if (cmd===176&&note===7) { document.getElementById('myRange').value=(100*vel)/127; onGainChange(); }
+      var cmd = msg.data[0], note = msg.data[1], vel = msg.data.length > 2 ? msg.data[2] : 0;
+      var sel = document.getElementById('midiInputDevices');
+      if (sel.options.length && msg.target.id === sel.options[sel.selectedIndex].id) {
+        if (cmd === 144) { if (vel > 0) noteOn(note); else noteOff(note); }
+        else if (cmd === 128) noteOff(note);
+        else if (cmd === 176 && note === 7) { document.getElementById('myRange').value = (100 * vel) / 127; onGainChange(); }
       }
     }
 
     function shiftOctave(d) {
-      if (currentOctave+d>=0&&currentOctave+d<=6) { currentOctave+=d; if(typeof Storage!=='undefined') localStorage.setItem('webharmonium.octave',currentOctave); }
-      document.getElementById('octave').innerText=currentOctave;
+      if (currentOctave + d >= 0 && currentOctave + d <= 6) { currentOctave += d; if (typeof Storage !== 'undefined') localStorage.setItem('webharmonium.octave', currentOctave); }
+      document.getElementById('octave').innerText = currentOctave;
     }
     function changeStack(d) {
-      stackCount+=d; if(stackCount<0) stackCount=0; else if(currentOctave+stackCount>6) stackCount=6-currentOctave;
-      document.getElementById('stack').innerText=stackCount;
-      if(typeof Storage!=='undefined') localStorage.setItem('webharmonium.stack',stackCount);
+      stackCount += d; if (stackCount < 0) stackCount = 0; else if (currentOctave + stackCount > 6) stackCount = 6 - currentOctave;
+      document.getElementById('stack').innerText = stackCount;
+      if (typeof Storage !== 'undefined') localStorage.setItem('webharmonium.stack', stackCount);
     }
     function shiftSemitone(s) {
-      var cs=parseInt(document.getElementById('transpose').innerText);
-      if (cs+s>=-11&&cs+s<=11) { cs+=s; document.getElementById('transpose').innerText=cs; document.getElementById('rootNote').innerText=baseKeyNames[cs>=0?cs%12:cs+12]; }
-      if(typeof Storage!=='undefined') localStorage.setItem('webharmonium.transpose',document.getElementById('transpose').innerText);
+      var cs = parseInt(document.getElementById('transpose').innerText);
+      if (cs + s >= -11 && cs + s <= 11) { cs += s; document.getElementById('transpose').innerText = cs; document.getElementById('rootNote').innerText = baseKeyNames[cs >= 0 ? cs % 12 : cs + 12]; }
+      if (typeof Storage !== 'undefined') localStorage.setItem('webharmonium.transpose', document.getElementById('transpose').innerText);
       init();
     }
     function onGainChange() {
-      var v=document.getElementById('myRange').value;
-      if(typeof Storage!=='undefined') localStorage.setItem('webharmonium.volume',v);
-      document.getElementById('volumeLevel').innerText=v+'%';
-      if(gainNode) gainNode.gain.value=v/100;
+      var v = document.getElementById('myRange').value;
+      if (typeof Storage !== 'undefined') localStorage.setItem('webharmonium.volume', v);
+      document.getElementById('volumeLevel').innerText = v + '%';
+      if (gainNode) gainNode.gain.value = v / 100;
     }
     function updateReverbState(v) {
-      useReverb=v;
-      if(typeof Storage!=='undefined') localStorage.setItem('webharmonium.useReverb',useReverb?'true':'false');
-      if(useReverb) gainNode.connect(reverbNode); else { try{ gainNode.disconnect(reverbNode); }catch(e){} }
+      useReverb = v;
+      if (typeof Storage !== 'undefined') localStorage.setItem('webharmonium.useReverb', useReverb ? 'true' : 'false');
+      if (useReverb) gainNode.connect(reverbNode); else { try { gainNode.disconnect(reverbNode); } catch (e) { } }
     }
 
-    var notePlaying=0;
+    var notePlaying = 0;
     function play(p) {
-      notePlaying=keyboardMap[p.getAttribute('key')]; noteOn(notePlaying);
-      var k=p.getAttribute('key'); pressedKeys[k]=true; updateDisplay(k,true); p.classList.add('pressed');
+      notePlaying = keyboardMap[p.getAttribute('key')]; noteOn(notePlaying);
+      var k = p.getAttribute('key'); pressedKeys[k] = true; updateDisplay(k, true); p.classList.add('pressed');
     }
     function stop(p) {
       noteOff(notePlaying);
-      var k=p.getAttribute('key'); delete pressedKeys[k];
-      var rem=Object.keys(pressedKeys); if(rem.length) updateDisplay(rem[rem.length-1],true); else updateDisplay(null,false);
+      var k = p.getAttribute('key'); delete pressedKeys[k];
+      var rem = Object.keys(pressedKeys); if (rem.length) updateDisplay(rem[rem.length - 1], true); else updateDisplay(null, false);
       p.classList.remove('pressed');
     }
 
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load',function(){ navigator.serviceWorker.register('/serviceworker.js').catch(function(){}); });
+      window.addEventListener('load', function () { navigator.serviceWorker.register('/serviceworker.js').catch(function () { }); });
     }
   </script>
 </head>
+
 <body>
 
   <!-- ── HARD MOBILE BLOCK ── -->
   <div id="mobileBlock">
     <div class="mb-title">Desktop only.</div>
-    <p class="mb-body">Web Harmonium requires a physical keyboard to play. Please open this on a desktop or laptop computer.</p>
+    <p class="mb-body">Web Harmonium requires a physical keyboard to play. Please open this on a desktop or laptop
+      computer.</p>
     <div class="mb-badge">
       <i class="fa-solid fa-keyboard"></i>
       Keyboard &amp; Desktop required
@@ -555,14 +1264,24 @@
       <a class="logo" href="/"><span class="logo-word">Web harmonium</span><span class="logo-dot"></span></a>
       <div class="hdr-spacer"></div>
       <div class="hdr-links">
-        <a class="hdr-star" href="https://github.com/devchauhann/harmoniumweb" target="_blank" rel="noopener" title="Star on GitHub">
-          <svg class="star-gh-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
+        <a class="hdr-star" href="https://github.com/devchauhann/harmoniumweb" target="_blank" rel="noopener"
+          title="Star on GitHub">
+          <svg class="star-gh-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
+          </svg>
           Star on GitHub
           <span class="star-sep"></span>
-          <svg class="star-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
           <span class="star-count" id="ghStarCount">—</span>
         </a>
-        <a class="hdr-link" href="https://linkedin.com/in/devchauhann3" target="_blank" rel="noopener" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a class="hdr-link" href="https://linkedin.com/in/devchauhann3" target="_blank" rel="noopener"
+          title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg></a>
       </div>
     </div>
   </header>
@@ -573,7 +1292,8 @@
     <section class="hero" id="hero">
       <div class="eyebrow"><span class="eyebrow-line"></span>Web Instrument</div>
       <h1>Play the <em>Harmonium</em><br>in your browser.</h1>
-      <p class="hero-body">A real sampled harmonium — no plugin, no install. Use your keyboard to play ragas, explore octaves, add reverb, and connect a MIDI device. Sargam notation logs as you play.</p>
+      <p class="hero-body">A real sampled harmonium — no plugin, no install. Use your keyboard to play ragas, explore
+        octaves, add reverb, and connect a MIDI device. Sargam notation logs as you play.</p>
       <div class="hero-links">
         <button class="link-primary" id="loadBtn" onclick="showPermission()">
           <i class="fa-solid fa-circle-play"></i> Load Instrument
@@ -587,7 +1307,8 @@
     <!-- Keyboard Permission Notice -->
     <div id="keyPermission">
       <i class="fa-solid fa-keyboard"></i>
-      <p><strong>Allow keyboard input</strong> — this app captures key presses while the window is in focus. Browser shortcuts may be temporarily overridden. Click <strong>Start Playing</strong> to continue.</p>
+      <p><strong>Allow keyboard input</strong> — this app captures key presses while the window is in focus. Browser
+        shortcuts may be temporarily overridden. Click <strong>Start Playing</strong> to continue.</p>
       <button class="perm-btn" onclick="startLoad()">
         <i class="fa-solid fa-circle-play"></i> Start Playing
       </button>
@@ -618,38 +1339,61 @@
             <svg id="hKeys" viewBox="0 0 294 96" preserveAspectRatio="none">
 
               <!-- WHITE KEYS -->
-              <polygon points="0,0 14,0 14,44 21,44 21,88 0,88 0,0" class="wkey" key="`" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="21,44 28,44 28,0 35,0 35,44 42,44 42,88 21,88 21,44" class="wkey" key="q" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="42,44 49,44 49,0 63,0 63,88 42,88 42,44" class="wkey" key="w" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="63,0 77,0 77,44 84,44 84,88 63,88 63,0" class="wkey" key="e" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="84,44 91,44 91,0 98,0 98,44 105,44 105,88 84,88 84,44" class="wkey" key="r" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="105,44 112,44 112,0 126,0 126,88 105,88 105,44" class="wkey" key="t" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="126,0 140,0 140,44 147,44 147,88 126,88 126,0" class="wkey" key="y" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="147,44 154,44 154,0 161,0 161,44 168,44 168,88 147,88 147,44" class="wkey" key="u" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="168,44 175,44 175,0 182,0 182,44 189,44 189,88 168,88 168,44" class="wkey" key="i" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="189,44 196,44 196,0 210,0 210,88 189,88 189,44" class="wkey" key="o" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="210,0 224,0 224,44 231,44 231,88 210,88 210,0" class="wkey" key="p" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="231,44 238,44 238,0 245,0 245,44 252,44 252,88 231,88 231,44" class="wkey" key="[" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="252,44 259,44 259,0 273,0 273,88 252,88 252,44" class="wkey" key="]" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="273,0 294,0 294,88 273,88 273,0" class="wkey" key="\" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
+              <polygon points="0,0 14,0 14,44 21,44 21,88 0,88 0,0" class="wkey" key="`" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="21,44 28,44 28,0 35,0 35,44 42,44 42,88 21,88 21,44" class="wkey" key="q"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="42,44 49,44 49,0 63,0 63,88 42,88 42,44" class="wkey" key="w" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="63,0 77,0 77,44 84,44 84,88 63,88 63,0" class="wkey" key="e" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="84,44 91,44 91,0 98,0 98,44 105,44 105,88 84,88 84,44" class="wkey" key="r"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="105,44 112,44 112,0 126,0 126,88 105,88 105,44" class="wkey" key="t"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="126,0 140,0 140,44 147,44 147,88 126,88 126,0" class="wkey" key="y"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="147,44 154,44 154,0 161,0 161,44 168,44 168,88 147,88 147,44" class="wkey" key="u"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="168,44 175,44 175,0 182,0 182,44 189,44 189,88 168,88 168,44" class="wkey" key="i"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="189,44 196,44 196,0 210,0 210,88 189,88 189,44" class="wkey" key="o"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="210,0 224,0 224,44 231,44 231,88 210,88 210,0" class="wkey" key="p"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="231,44 238,44 238,0 245,0 245,44 252,44 252,88 231,88 231,44" class="wkey" key="["
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="252,44 259,44 259,0 273,0 273,88 252,88 252,44" class="wkey" key="]"
+                onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="273,0 294,0 294,88 273,88 273,0" class="wkey" key="\" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
 
               <!-- BLACK KEYS -->
-              <polygon points="14,0 28,0 28,44 14,44 14,0" class="bkey" key="1" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="35,0 49,0 49,44 35,44 35,0" class="bkey" key="2" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="77,0 91,0 91,44 77,44 77,0" class="bkey" key="4" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="98,0 112,0 112,44 98,44 98,0" class="bkey" key="5" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="140,0 154,0 154,44 140,44 140,0" class="bkey" key="7" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="161,0 175,0 175,44 161,44 161,0" class="bkey" key="8" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="182,0 196,0 196,44 182,44 182,0" class="bkey" key="9" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="224,0 238,0 238,44 224,44 224,0" class="bkey" key="-" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
-              <polygon points="245,0 259,0 259,44 245,44 245,0" class="bkey" key="=" onmousedown="play(this)" onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)"/>
+              <polygon points="14,0 28,0 28,44 14,44 14,0" class="bkey" key="1" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="35,0 49,0 49,44 35,44 35,0" class="bkey" key="2" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="77,0 91,0 91,44 77,44 77,0" class="bkey" key="4" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="98,0 112,0 112,44 98,44 98,0" class="bkey" key="5" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="140,0 154,0 154,44 140,44 140,0" class="bkey" key="7" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="161,0 175,0 175,44 161,44 161,0" class="bkey" key="8" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="182,0 196,0 196,44 182,44 182,0" class="bkey" key="9" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="224,0 238,0 238,44 224,44 224,0" class="bkey" key="-" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
+              <polygon points="245,0 259,0 259,44 245,44 245,0" class="bkey" key="=" onmousedown="play(this)"
+                onmouseup="stop(this)" ontouchstart="play(this)" ontouchend="stop(this)" />
 
               <!-- WHITE KEY LABELS -->
-              <text x="4"   y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">`</text>
-              <text x="25"  y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">q</text>
-              <text x="46"  y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">w</text>
-              <text x="66"  y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">e</text>
-              <text x="87"  y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">r</text>
+              <text x="4" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">`</text>
+              <text x="25" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">q</text>
+              <text x="46" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">w</text>
+              <text x="66" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">e</text>
+              <text x="87" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">r</text>
               <text x="108" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">t</text>
               <text x="129" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">y</text>
               <text x="150" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">u</text>
@@ -661,10 +1405,10 @@
               <text x="276" y="78" fill="#888" font-family="DM Mono,monospace" font-size="6">\</text>
 
               <!-- BLACK KEY LABELS -->
-              <text x="15"  y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">1</text>
-              <text x="36"  y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">2</text>
-              <text x="78"  y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">4</text>
-              <text x="99"  y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">5</text>
+              <text x="15" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">1</text>
+              <text x="36" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">2</text>
+              <text x="78" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">4</text>
+              <text x="99" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">5</text>
               <text x="141" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">7</text>
               <text x="162" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">8</text>
               <text x="183" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">9</text>
@@ -672,14 +1416,22 @@
               <text x="246" y="33" fill="#4a4a4a" font-family="DM Mono,monospace" font-size="5.5">=</text>
 
               <!-- SARGAM LABELS -->
-              <text x="64"  y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">S</text>
-              <text x="85"  y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">R</text>
-              <text x="106" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">G</text>
-              <text x="127" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">M</text>
-              <text x="148" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">P</text>
-              <text x="169" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">D</text>
-              <text x="190" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">N</text>
-              <text x="210" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600" font-size="5">Ṡ</text>
+              <text x="64" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">S</text>
+              <text x="85" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">R</text>
+              <text x="106" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">G</text>
+              <text x="127" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">M</text>
+              <text x="148" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">P</text>
+              <text x="169" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">D</text>
+              <text x="190" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">N</text>
+              <text x="210" y="86" fill="#e0784a" font-family="DM Sans,sans-serif" font-weight="600"
+                font-size="5">Ṡ</text>
             </svg>
           </div>
 
@@ -709,7 +1461,8 @@
               <span style="font-size:0.78rem;color:var(--text3)">Level</span>
               <span class="vol-val" id="volumeLevel">30%</span>
             </div>
-            <input type="range" min="1" max="100" value="30" id="myRange" oninput="onGainChange()" onchange="onGainChange()">
+            <input type="range" min="1" max="100" value="30" id="myRange" oninput="onGainChange()"
+              onchange="onGainChange()">
           </div>
 
           <div class="ctrl-block">
@@ -724,7 +1477,8 @@
           </div>
 
           <div class="ctrl-block">
-            <div class="ctrl-lbl"><i class="fa-solid fa-arrows-left-right"></i>Transpose <span class="root-badge" id="rootNote">C</span></div>
+            <div class="ctrl-lbl"><i class="fa-solid fa-arrows-left-right"></i>Transpose <span class="root-badge"
+                id="rootNote">C</span></div>
             <div class="stepper">
               <button class="step-btn" onclick="shiftSemitone(-1)"><i class="fa-solid fa-minus"></i></button>
               <span class="step-val" id="transpose">0</span>
@@ -754,7 +1508,8 @@
             <div class="ctrl-lbl"><i class="fa-solid fa-plug"></i>MIDI</div>
             <div class="midi-top">
               <span class="midi-status" id="midiStatus">Not connected</span>
-              <button class="midi-btn" onclick="requestMIDIAccess()" title="Refresh MIDI"><i class="fa-solid fa-rotate"></i></button>
+              <button class="midi-btn" onclick="requestMIDIAccess()" title="Refresh MIDI"><i
+                  class="fa-solid fa-rotate"></i></button>
             </div>
             <select id="midiInputDevices"></select>
           </div>
@@ -770,7 +1525,7 @@
     // Save app state to localStorage whenever the page unloads or visibility changes
     function saveAppState() {
       if (typeof Storage === 'undefined') return;
-      
+
       try {
         localStorage.setItem('webharmonium.isLoaded', audioBuffer ? 'true' : 'false');
         localStorage.setItem('webharmonium.notation', notation);
@@ -783,30 +1538,39 @@
       }
     }
 
-    // Restore app state from localStorage
-    function restoreAppState() {
+    // Restore app state from localStorage (only settings, not UI state on fresh load)
+    function restoreAppState(isTabSwitch = false) {
       if (typeof Storage === 'undefined') return;
-      
+
       try {
-        var wasLoaded = localStorage.getItem('webharmonium.isLoaded') === 'true';
         var savedNotation = localStorage.getItem('webharmonium.notation');
         var heroHidden = localStorage.getItem('webharmonium.heroHidden') === 'true';
         var mainScreenVisible = localStorage.getItem('webharmonium.mainScreenVisible') === 'true';
 
-        // Restore notation if it exists
-        if (savedNotation) {
-          notation = savedNotation;
-          document.getElementById('notVal').textContent = notation;
-        }
-
-        // If app was loaded before, restore the UI state
-        if (wasLoaded && mainScreenVisible) {
-          if (heroHidden) {
-            document.getElementById('hero').classList.add('hidden');
+        // Only restore notation and UI state if returning from tab switch
+        if (isTabSwitch) {
+          // Restore notation if it exists
+          if (savedNotation) {
+            notation = savedNotation;
+            document.getElementById('notVal').textContent = notation;
           }
+
+          // If app was loaded before, restore the UI state
           if (mainScreenVisible) {
+            if (heroHidden) {
+              document.getElementById('hero').classList.add('hidden');
+            }
             document.getElementById('mainScreen').style.display = 'block';
           }
+        } else {
+          // Fresh page load - reset to initial state
+          notation = '';
+          if (document.getElementById('notVal')) {
+            document.getElementById('notVal').textContent = notation;
+          }
+          // Don't restore UI state - let user start fresh
+          document.getElementById('hero').classList.remove('hidden');
+          document.getElementById('mainScreen').style.display = 'none';
         }
       } catch (e) {
         console.warn('Failed to restore state:', e);
@@ -818,7 +1582,8 @@
       if (document.hidden) {
         saveAppState();
       } else {
-        restoreAppState();
+        // Only restore on tab switch back, pass true flag
+        restoreAppState(true);
       }
     });
 
@@ -827,9 +1592,9 @@
       saveAppState();
     });
 
-    // Restore state on page load
+    // On fresh page load, don't restore UI state (pass false flag)
     window.addEventListener('load', function () {
-      restoreAppState();
+      restoreAppState(false);
     });
 
     // ── Hard mobile block — no dismiss button ──
@@ -841,7 +1606,7 @@
     function showPermission() {
       var p = document.getElementById('keyPermission');
       p.style.display = 'flex';
-      setTimeout(function(){ p.scrollIntoView({ behavior:'smooth', block:'center' }); }, 50);
+      setTimeout(function () { p.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
     }
 
     function startLoad() {
@@ -854,15 +1619,16 @@
 
     // Fetch live GitHub star count
     fetch('https://api.github.com/repos/devchauhann/harmoniumweb')
-      .then(function(r){ return r.json(); })
-      .then(function(d){
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
         var el = document.getElementById('ghStarCount');
         if (el && typeof d.stargazers_count === 'number') {
           el.textContent = d.stargazers_count;
         }
       })
-      .catch(function(){ /* silently fail */ });
+      .catch(function () { /* silently fail */ });
   </script>
 
 </body>
+
 </html>
