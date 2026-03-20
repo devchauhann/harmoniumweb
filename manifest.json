@@ -1,0 +1,60 @@
+{
+    "name": "Web Harmonium - Play Indian Classical Instrument Online",
+    "short_name": "Web Harmonium",
+    "description": "A real sampled harmonium player in your browser. No plugin needed. Play ragas, explore octaves, add reverb, connect MIDI. Learn Indian classical music with Sargam notation.",
+    "start_url": "https://harmoniumweb.vercel.app/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "landscape-primary",
+    "theme_color": "#e0784a",
+    "background_color": "#111113",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%23111113' width='192' height='192'/%3E%3Ccircle cx='96' cy='96' r='80' fill='%23e0784a'/%3E%3Cpath d='M 60 120 Q 70 100 90 95 Q 110 90 120 110' stroke='%23111113' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%23111113' width='192' height='192'/%3E%3Ccircle cx='96' cy='96' r='80' fill='%23e0784a'/%3E%3Cpath d='M 60 120 Q 70 100 90 95 Q 110 90 120 110' stroke='%23111113' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
+        }
+    ],
+    "categories": [
+        "music",
+        "games",
+        "education",
+        "entertainment"
+    ],
+    "screenshots": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'%3E%3Crect fill='%23111113' width='540' height='720'/%3E%3Crect fill='%2318181b' y='60' width='540' height='600'/%3E%3Ctext x='270' y='100' font-size='24' fill='%23e0784a' text-anchor='middle'%3EWeb Harmonium%3C/text%3E%3C/svg%3E",
+            "sizes": "540x720",
+            "type": "image/svg+xml",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect fill='%23111113' width='1280' height='720'/%3E%3Crect fill='%2318181b' y='60' width='1280' height='600'/%3E%3Ctext x='640' y='100' font-size='32' fill='%23e0784a' text-anchor='middle'%3EWeb Harmonium%3C/text%3E%3C/svg%3E",
+            "sizes": "1280x720",
+            "type": "image/svg+xml",
+            "form_factor": "wide"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Play Harmonium",
+            "short_name": "Play",
+            "description": "Quickly open Web Harmonium to start playing",
+            "url": "/?shortcut=play",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect fill='%23e0784a' width='96' height='96'/%3E%3Cpolygon points='30,20 70,48 30,76' fill='%23111113'/%3E%3C/svg%3E",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        }
+    ]
+}

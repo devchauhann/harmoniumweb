@@ -1,0 +1,21 @@
+# Robots.txt for Web Harmonium
+# Allow all search engines to crawl and index the site
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: *.js
+Allow: *.css
+Allow: *.wav
+
+# Block specific bot patterns
+User-agent: AhrefsBot
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://harmoniumweb.vercel.app/sitemap.xml
+Sitemap: https://harmoniumweb.vercel.app/sitemap-mobile.xml
+
+# Crawl delay (optional - set delays for slower connections)
+# Crawl-delay: 1
