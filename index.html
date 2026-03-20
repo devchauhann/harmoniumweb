@@ -320,6 +320,9 @@
       font-size: 0.75rem;
       color: var(--text2);
       min-width: 8px;
+      font-weight: 600;
+      display: inline-block;
+      padding: 0 2px;
     }
 
     .hdr-divider {
@@ -1018,7 +1021,7 @@
   </style>
 
   <script>
-    var sampleURL = 'harmonium-kannan-orig.wav';
+    var sampleURL = 'harmonium.wav';
     var debug = false;
     var AudioContext = window.AudioContext || window.webkitAudioContext, context = null;
     var audioBuffer = null, gainNode = null, reverbNode = null, useReverb = false;
@@ -1160,6 +1163,8 @@
           var btn = document.getElementById('loadBtn');
           btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Loaded';
           btn.classList.add('done');
+          // Save loaded state
+          saveAppState();
         }, function (e) { console.error(e); document.getElementById('loadingOverlay').classList.remove('show'); });
       };
       req.send();
@@ -1537,19 +1542,108 @@
       load();
     }
 
+    // ── STATE PERSISTENCE ──
+    // Save app state to localStorage whenever the page unloads or visibility changes
+    function saveAppState() {
+      if (typeof Storage === 'undefined') return;
+
+      try {
+        localStorage.setItem('webharmonium.isLoaded', audioBuffer ? 'true' : 'false');
+        localStorage.setItem('webharmonium.notation', notation);
+        localStorage.setItem('webharmonium.currentOctave', currentOctave);
+        localStorage.setItem('webharmonium.stackCount', stackCount);
+        localStorage.setItem('webharmonium.heroHidden', document.getElementById('hero').classList.contains('hidden') ? 'true' : 'false');
+        localStorage.setItem('webharmonium.mainScreenVisible', document.getElementById('mainScreen').style.display === 'block' ? 'true' : 'false');
+      } catch (e) {
+        console.warn('Failed to save state:', e);
+      }
+    }
+
+    // Restore app state from localStorage
+    function restoreAppState() {
+      if (typeof Storage === 'undefined') return;
+
+      try {
+        var wasLoaded = localStorage.getItem('webharmonium.isLoaded') === 'true';
+        var savedNotation = localStorage.getItem('webharmonium.notation');
+        var heroHidden = localStorage.getItem('webharmonium.heroHidden') === 'true';
+        var mainScreenVisible = localStorage.getItem('webharmonium.mainScreenVisible') === 'true';
+
+        // Restore notation if it exists
+        if (savedNotation) {
+          notation = savedNotation;
+          document.getElementById('notVal').textContent = notation;
+        }
+
+        // If app was loaded before, restore the UI state
+        if (wasLoaded && mainScreenVisible) {
+          if (heroHidden) {
+            document.getElementById('hero').classList.add('hidden');
+          }
+          if (mainScreenVisible) {
+            document.getElementById('mainScreen').style.display = 'block';
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to restore state:', e);
+      }
+    }
+
+    // Save state when page visibility changes or window closes
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        saveAppState();
+      } else {
+        restoreAppState();
+      }
+    });
+
+    // Save state before unloading
+    window.addEventListener('beforeunload', function () {
+      saveAppState();
+    });
+
+    // Restore state on page load
+    window.addEventListener('load', function () {
+      restoreAppState();
+    });
+
     // Init volume display
     document.getElementById('volumeLevel').innerText = document.getElementById('myRange').value + '%';
 
-    // Fetch live GitHub star count
-    fetch('https://api.github.com/repos/devchauhann/webharmonium')
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var el = document.getElementById('ghStarCount');
-        if (el && typeof d.stargazers_count === 'number') {
-          el.textContent = d.stargazers_count;
-        }
-      })
-      .catch(function () { /* silently fail */ });
+    // Fetch live GitHub star count with retry
+    function fetchGitHubStars() {
+      fetch('https://api.github.com/repos/devchauhann/harmoniumweb')
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('GitHub API response: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          var el = document.getElementById('ghStarCount');
+          if (el && typeof data.stargazers_count === 'number') {
+            // Format number with K suffix for large numbers
+            var count = data.stargazers_count;
+            var displayCount = count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count.toString();
+            el.textContent = displayCount;
+            el.setAttribute('title', count + ' stars on GitHub');
+          }
+        })
+        .catch(function (error) {
+          console.warn('Could not fetch GitHub stars:', error);
+          var el = document.getElementById('ghStarCount');
+          if (el) {
+            el.textContent = '★';
+          }
+        });
+    }
+
+    // Fetch stars on page load
+    fetchGitHubStars();
+
+    // Refresh stars every 5 minutes
+    setInterval(fetchGitHubStars, 300000);
   </script>
 
 </body>
