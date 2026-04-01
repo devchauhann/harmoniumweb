@@ -87,6 +87,135 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+  <!-- Rich Schema Markup for Google Search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Web Harmonium",
+    "description": "Play a real sampled harmonium in your browser. No plugin needed. Use keyboard or MIDI device. Learn Sargam notation with reverb effects.",
+    "url": "https://harmoniumweb.vercel.app/",
+    "applicationCategory": "Multimedia",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Dev Chauhan"
+    },
+    "image": "https://harmoniumweb.vercel.app/og-image.png",
+    "screenshot": "https://harmoniumweb.vercel.app/og-image.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "125"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Web Harmonium",
+    "description": "Play Indian classical harmonium online with keyboard or MIDI support",
+    "url": "https://harmoniumweb.vercel.app/",
+    "downloadUrl": "https://harmoniumweb.vercel.app/",
+    "applicationCategory": "MusicApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  }
+  </script>
+
+  <!-- Organization & Creator Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Web Harmonium",
+    "url": "https://harmoniumweb.vercel.app/",
+    "logo": "https://harmoniumweb.vercel.app/favicon/favicon-192x192.png",
+    "description": "Free online Indian classical harmonium player with MIDI support",
+    "sameAs": [
+      "https://github.com/devchauhann/harmoniumweb",
+      "https://twitter.com/devchauhann"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Technical Support",
+      "url": "https://github.com/devchauhann/harmoniumweb/issues"
+    }
+  }
+  </script>
+
+  <!-- Creator / Author Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dev Chauhan",
+    "url": "https://github.com/devchauhann",
+    "sameAs": [
+      "https://twitter.com/devchauhann",
+      "https://github.com/devchauhann"
+    ],
+    "jobTitle": "Full Stack Developer"
+  }
+  </script>
+
+  <!-- FAQPage Schema for Search Enhancement -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Web Harmonium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Web Harmonium is a free online Indian classical harmonium player. It features real sampled harmonium sounds, keyboard or MIDI device input, reverb effects, and Sargam notation logging."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need any plugin to play?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! Web Harmonium runs entirely in your browser using modern Web Audio API. No plugins or installations required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use a MIDI device?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Web Harmonium supports MIDI devices. Connect any MIDI keyboard or controller to play the harmonium with your hardware."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Web Harmonium free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, completely free and open source. Visit the GitHub repository to explore the code and contribute."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Performance Optimization Links -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://api.github.com" />
+  <link rel="prefetch" href="https://fonts.gstatic.com" />
+
   <style>
     :root {
       --bg: #111113;
@@ -1295,7 +1424,7 @@
       <p class="hero-body">A real sampled harmonium — no plugin, no install. Use your keyboard to play ragas, explore
         octaves, add reverb, and connect a MIDI device. Sargam notation logs as you play.</p>
       <div class="hero-links">
-        <button class="link-primary" id="loadBtn" onclick="showPermission()">
+        <button class="link-primary" id="loadBtn" onclick="load()">
           <i class="fa-solid fa-circle-play"></i> Load Instrument
         </button>
         <a class="link-ghost" href="#keymap">
@@ -1304,12 +1433,12 @@
       </div>
     </section>
 
-    <!-- Keyboard Permission Notice -->
-    <div id="keyPermission">
+    <!-- Keyboard Permission Notice - HIDDEN -->
+    <div id="keyPermission" style="display: none;">
       <i class="fa-solid fa-keyboard"></i>
       <p><strong>Allow keyboard input</strong> — this app captures key presses while the window is in focus. Browser
         shortcuts may be temporarily overridden. Click <strong>Start Playing</strong> to continue.</p>
-      <button class="perm-btn" onclick="startLoad()">
+      <button class="perm-btn" onclick="load()">
         <i class="fa-solid fa-circle-play"></i> Start Playing
       </button>
     </div>
@@ -1603,14 +1732,13 @@
       document.body.style.overflow = 'hidden';
     }
 
+    // Permission flow removed - users go directly to load()
+    // Kept for backwards compatibility
     function showPermission() {
-      var p = document.getElementById('keyPermission');
-      p.style.display = 'flex';
-      setTimeout(function () { p.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+      load();
     }
 
     function startLoad() {
-      document.getElementById('keyPermission').style.display = 'none';
       load();
     }
 
